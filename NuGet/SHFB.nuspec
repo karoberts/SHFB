@@ -6,15 +6,15 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
 	<metadata>
 		<id>EWSoftware.SHFB</id>
-		<version>2017.12.30.2</version>
-		<title>Sandcastle Help File Builder</title>
+		<version>2017.12.30.2-LD</version>
+		<title>Sandcastle Help File Builder (LD Build)</title>
 		<authors>Eric Woodruff</authors>
 		<owners>Eric Woodruff</owners>
 		<licenseUrl>https://github.com/EWSoftware/SHFB/blob/master/LICENSE</licenseUrl>
-		<projectUrl>https://github.com/EWSoftware/SHFB</projectUrl>
+		<projectUrl>https://github.com/karoberts/SHFB</projectUrl>
 		<iconUrl>https://raw.githubusercontent.com/EWSoftware/SHFB/master/NuGet/SHFB.png</iconUrl>
 		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<description>This package allows you to deploy the Sandcastle Help File Builder tools inside of a project to build help files without installing the tools manually such as on a build server.  Some limitations apply.  You will also need to install the reflection data set packages that you need for your projects.</description>
+		<description>LD Build to avoid issue with System.ValueTuple.xml.  This package allows you to deploy the Sandcastle Help File Builder tools inside of a project to build help files without installing the tools manually such as on a build server.  Some limitations apply.  You will also need to install the reflection data set packages that you need for your projects.</description>
 		<copyright>Eric Woodruff (c) 2006-2017</copyright>
 		<tags>SHFB documentation sandcastle help XML comments</tags>
 		<!-- Note that we do not add dependencies on the reflection data set packages.  The idea here is that you

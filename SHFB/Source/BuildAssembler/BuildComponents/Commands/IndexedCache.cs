@@ -204,8 +204,9 @@ namespace Microsoft.Ddue.Tools.Commands
             }
             catch(XmlException e)
             {
-                this.Component.WriteMessage(MessageLevel.Error, "The indexed document '{0}' is not a valid " +
-                    "XML document. The error message is: {1}", file, e.Message);
+                //this.Component.WriteMessage(MessageLevel.Error, "The indexed document '{0}' is not a valid " +
+                    //"XML document. The error message is: {1}", file, e.Message);
+                yield break;
             }
 
             XPathNodeIterator valueNodes = document.CreateNavigator().Select(this.ValueExpression);

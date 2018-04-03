@@ -247,8 +247,15 @@ namespace SandcastleBuilder.Utils.InheritedDocumentation
 
                 if(commentsFiles != null)
                 {
-                    xpathDoc = new XPathDocument(filename);
-                        commentsFiles.Add(xpathDoc.CreateNavigator());
+                    try
+                    {
+                        xpathDoc = new XPathDocument(filename);
+                            commentsFiles.Add(xpathDoc.CreateNavigator());
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
                 }
 
                 // Get the keys from the file and add them to the index

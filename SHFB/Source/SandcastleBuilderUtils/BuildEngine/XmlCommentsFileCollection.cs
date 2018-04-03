@@ -182,9 +182,18 @@ namespace SandcastleBuilder.Utils.BuildEngine
             {
                 // Find all comments elements with a reference.  XML comments files may be ill-formed so
                 // ignore any elements without a cref attribute.
-                var crefs = ComponentUtilities.XmlStreamAxis(f.SourcePath, new[] { "event", "exception",
-                    "inheritdoc", "permission", "see", "seealso" }).Select(
-                    el => (string)el.Attribute("cref")).Where(c => c != null);
+                IEnumerable<string> crefs;
+
+                try
+                {
+                    crefs = ComponentUtilities.XmlStreamAxis(f.SourcePath, new[] { "event", "exception",
+                        "inheritdoc", "permission", "see", "seealso" }).Select(
+                        el => (string)el.Attribute("cref")).Where(c => c != null).ToList();
+                }
+                catch (XmlException)
+                {
+                    yield break;
+                }
 
                 foreach(string refId in crefs)
                     if(refId.Length > 2 && refId[1] == ':' && refId.IndexOfAny(new[] { '.', '(' }) != -1)

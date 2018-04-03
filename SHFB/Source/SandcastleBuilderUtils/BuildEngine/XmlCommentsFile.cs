@@ -86,12 +86,18 @@ namespace SandcastleBuilder.Utils.BuildEngine
 
                     comments = new XmlDocument();
 
-                    // Read it with the appropriate encoding
-                    comments.LoadXml(Utility.ReadWithEncoding(sourcePath, ref enc));
+                    try
+                    {
+                        // Read it with the appropriate encoding
+                        comments.LoadXml(Utility.ReadWithEncoding(sourcePath, ref enc));
 
-                    comments.NodeChanged += comments_NodeChanged;
-                    comments.NodeInserted += comments_NodeChanged;
-                    comments.NodeRemoved += comments_NodeChanged;
+                        comments.NodeChanged += comments_NodeChanged;
+                        comments.NodeInserted += comments_NodeChanged;
+                        comments.NodeRemoved += comments_NodeChanged;
+                    }
+                    catch (Exception e)
+                    {
+                    }
                 }
 
                 return comments;
@@ -130,7 +136,13 @@ namespace SandcastleBuilder.Utils.BuildEngine
                         }
 
                         if(members == null)
-                            throw new InvalidOperationException(sourcePath + " does not contain a 'doc/members' node");
+                        {
+                            var doc = this.Comments.CreateNode(XmlNodeType.Element, "doc", "");
+                            var mems = this.Comments.CreateNode(XmlNodeType.Element, "members", "");
+                            doc.AppendChild(mems);
+                            members = mems;
+                            //throw new InvalidOperationException(sourcePath + " does not contain a 'doc/members' node");
+                        }
                     }
                 }
 
